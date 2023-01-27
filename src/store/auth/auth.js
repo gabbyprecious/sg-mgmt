@@ -16,7 +16,13 @@ const getters = {
 
 const actions = {
     async LogIn({commit}, User) {
-        await axios.post('login', User)
+        let response = await axios.post('User/authenticate', User, {
+           headers: {
+                'Content-Type': 'application/json',
+                 Accept: 'application/json'
+            },
+              });
+        localStorage.setItem('token', response.data.token);
         await commit('setUser', User.get('email'))
     },
     

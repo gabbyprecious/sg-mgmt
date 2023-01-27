@@ -10,6 +10,7 @@ import { loadFonts } from './plugins/webfontloader'
 
 import GeneralHome from './components/Home.vue'
 import PatientHome from './components/PatientView/PatientHome.vue'
+import Login from './components/Login.vue'
 
 
 import 'vuetify/styles'
@@ -33,6 +34,7 @@ axios.interceptors.response.use(undefined, function (error) {
   }
 })
 
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 axios.defaults.withCredentials = true
 axios.defaults.baseURL = 'http://localhost:60793/';
 
@@ -48,6 +50,11 @@ const vuetify = createVuetify({
 const routes = [
     { path: '/', component: GeneralHome },
     { path: '/patient-home', component: PatientHome },
+    {
+      path: '/login',
+      component: Login,
+      meta: { guest: true },
+    },
 ]
 
 const router = createRouter({

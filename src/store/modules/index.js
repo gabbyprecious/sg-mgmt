@@ -1,7 +1,7 @@
 // import Vuex from 'vuex';
 // import Vue from 'vue';
 import createPersistedState from "vuex-persistedstate";
-// import auth from './modules/auth';
+import auth from '../auth/auth.js';
 import { createStore } from 'vuex'
 
 // // Load Vuex
@@ -16,16 +16,9 @@ import { createStore } from 'vuex'
 
 // Create a new store instance.
 export const store = createStore({
-    state () {
-      return {
-        count: 0
-      }
-    },
-    mutations: {
-      increment (state) {
-        state.count++
-      }
-    },
+  modules: {
+    auth
+  },
     plugins: [createPersistedState()]
   })
   
