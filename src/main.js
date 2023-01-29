@@ -10,6 +10,7 @@ import GeneralHome from './components/Home.vue';
 import PatientHome from './components/PatientView';
 import Login from './components/Login.vue';
 import DoctorView from './components/DoctorView';
+import UploadDiagnosis from './components/DoctorView/UploadDiagnosis.vue';
 
 import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
@@ -45,6 +46,7 @@ const routes = [
   { path: '/', component: GeneralHome },
   { path: '/patient-home', component: PatientHome },
   { path: '/doctor', component: DoctorView },
+  { path: '/test', component: UploadDiagnosis },
   {
     path: '/login',
     component: Login,

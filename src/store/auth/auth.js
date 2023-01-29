@@ -25,6 +25,30 @@ const actions = {
     await commit('setUser', User.get('email'));
   },
 
+  async CreatePatient({commit}, newPatient) {
+    console.log("Patient", newPatient)
+    let response = await axios.post('Doctor/CreatePatient', newPatient, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+    console.log("response", response.data);
+    await commit('setUser', newPatient.get('email'));
+  },
+
+  async UploadDiagnosis({commit}, newDiagnosis) {
+    console.log("Diagnosis", newDiagnosis)
+    let response = await axios.post('Doctor/UploadDiagnosis', newDiagnosis, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+    console.log("response", response.data);
+    await commit('setUser', newDiagnosis.get('email'));
+  },
+
   async GetDiagnosis({ commit }) {
     let response = await axios.get('diagnosis');
     commit('setPosts', response.data);
