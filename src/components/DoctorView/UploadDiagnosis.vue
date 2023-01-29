@@ -1,5 +1,6 @@
 <template>
-    <v-container>
+  <v-container>
+    <v-responsive max-width="800">
       <v-row>
         <v-col>
           <v-card class="pa-2" outlined tile> One of two columns </v-card>
@@ -29,12 +30,12 @@
           </v-card>
         </v-col>
       </v-row>
-    </v-container>
-  </template>
-  <script>
-  export default {
-    name: "PatientHome",
-    components: {},
-  };
-  </script>
-  
+    </v-responsive>
+  </v-container>
+</template>
+<script>
+export default {
+  name: 'PatientHome',
+  components: {},
+};
+</script>
