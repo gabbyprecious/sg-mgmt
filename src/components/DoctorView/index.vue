@@ -16,17 +16,26 @@
               <v-avatar color="primary" size="71">ON</v-avatar>
 
               <div class="biodata">
-                <p>Name:</p>
-                <p>Birth Date:</p>
-                <p>Blood Group:</p>
-                <p>Last Doctor:</p>
+                <p>First Name: {{Doctor.firstName }}</p>
+                <p>Last Name: {{Doctor.lastName }}</p>
+                <p>Birth Date: {{Doctor.dob }}</p>
+                <p>Email: {{Doctor.email }}</p>
+                <p>Specialty: {{Doctor.specialty }}</p>
               </div>
             </v-sheet>
           </v-col>
 
           <v-col cols="12" sm="8">
             <v-sheet min-height="70vh" rounded="lg" class="tab-content">
-              {{ activeTab }}
+              <div v-if="activeTab == 'Create Patient'" id="error">
+                <CreatePatient/>
+              </div>
+              <div v-if="activeTab == 'Appointments'">
+                <AppointmentView/>
+              </div>
+              <div v-if="activeTab == 'Upload Diagnosis'">
+                <UploadDiagnosis/>
+              </div>
             </v-sheet>
           </v-col>
         </v-row>
@@ -36,17 +45,39 @@
 </template>
 
 <script>
+import CreatePatient from './CreatePatient.vue';
+import AppointmentView from './AppointmentView.vue';
+import UploadDiagnosis from './UploadDiagnosis.vue';
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: 'DoctorViewContainer',
+  created() {
+    console.log('created');
+    this.GetDoctor();
+    // console.log(this.Doctor);
+  },
+
+  components: {
+    CreatePatient,
+    AppointmentView,
+    UploadDiagnosis
+  },
   data: () => ({
     activeTab: 'Create Patient',
     links: ['Create Patient', 'Appointments', 'Upload Diagnosis'],
   }),
 
   methods: {
+    ...mapActions(["GetDoctor"]),
+
     switchTabs(payload) {
       this.activeTab = payload;
     },
+  },
+
+  computed: {
+    ...mapGetters({ Doctor: "StateDoctor" }),
   },
 };
 </script>

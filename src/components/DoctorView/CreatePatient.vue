@@ -48,30 +48,6 @@
             </form>
           </v-card>
         </v-col>
-        <v-col>
-          <v-card class="pa-2" outlined tile>
-            One of two columns
-            <v-container>
-              <v-row>
-                <v-col>
-                  <v-card class="pa-2" outlined tile>
-                    One of three columns
-                  </v-card>
-                </v-col>
-                <v-col>
-                  <v-card class="pa-2" outlined tile>
-                    One of three columns
-                  </v-card>
-                </v-col>
-                <v-col>
-                  <v-card class="pa-2" outlined tile>
-                    One of three columns
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card>
-        </v-col>
       </v-row>
     </v-responsive>
   </v-container>

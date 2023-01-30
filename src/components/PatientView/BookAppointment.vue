@@ -40,13 +40,11 @@
   </template>
   <script>
   import { useField, useForm } from "vee-validate";
-  import Datepicker from "@vuepic/vue-datepicker";
   import "@vuepic/vue-datepicker/dist/main.css";
   import { mapActions } from "vuex";
   
   export default {
     name: "CreatePatient",
-    components: { Datepicker },
     setup() {
       const { handleSubmit, handleReset } = useForm({
         validationSchema: {
@@ -60,13 +58,6 @@
   
             return "Last Name needs to be at least 2 characters.";
           },
-  
-          // email(value) {
-          //   if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true;
-  
-          //   return "Must be a valid e-mail.";
-          // },
-  
           bloodGroup(value) {
             if (value?.length <= 3) return true;
   

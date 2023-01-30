@@ -5,11 +5,17 @@ import axios from 'axios';
 const state = {
   user: null,
   diagnosis: null,
+  doctor: null,
+  doctors: null,
+  patient: null,
 };
 
 const getters = {
   isAuthenticated: (state) => !!state.user,
   StateDiagnosis: (state) => state.diagnosis,
+  StateDoctor: (state) => state.doctor,
+  StateDoctors: (state) => state.doctors,
+  StatePatient: (state) => state.patient,
   StateUser: (state) => state.user,
 };
 
@@ -53,6 +59,12 @@ const actions = {
     let response = await axios.get('diagnosis');
     commit('setPosts', response.data);
   },
+
+  async GetDoctor({ commit }) {
+    let response = await axios.get('/Doctor');
+    console.log("response", response.data)
+    commit('setDoctor', response.data);
+  }
 };
 const mutations = {
   setUser(state, email) {
@@ -60,6 +72,14 @@ const mutations = {
   },
   setDiagnosis(state, diagnosis) {
     state.diagnosis = diagnosis;
+  },
+
+  setDoctors(state, diagnosis) {
+    state.diagnosis = diagnosis;
+  },
+
+  setDoctor(state, doctor) {
+    state.doctor = doctor;
   },
 };
 export default {

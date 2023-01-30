@@ -19,7 +19,7 @@
                 <p>Name:</p>
                 <p>Birth Date:</p>
                 <p>Blood Group:</p>
-                <p>Last Doctor:</p>
+                <p>Email:</p>
               </div>
             </v-sheet>
           </v-col>
@@ -27,6 +27,12 @@
           <v-col cols="12" sm="8">
             <v-sheet min-height="70vh" rounded="lg" class="tab-content">
               {{ activeTab }}
+              <div v-if="activeTab == 'Book Appointments'">
+                <BookAppointment />
+              </div>
+              <div v-if="activeTab == 'Previous Diagnosis'">
+                <!-- <ListDiganosis /> -->
+              </div>
             </v-sheet>
           </v-col>
         </v-row>
@@ -36,18 +42,36 @@
 </template>
 
 <script>
+import BookAppointment from "./BookAppointment.vue";
+import { mapGetters, mapActions } from "vuex";
+// import ListDiganosis from './ListDiganosis.vue';
+
 export default {
-  name: 'PatientHome',
-  components: {},
+  name: "PatientHome",
+  setup() {
+    console.log("created");
+    // this.GetDoctor();
+    // console.log(this.Doctor);
+  },
+  components: {
+    BookAppointment,
+    // ListDiganosis,
+  },
   data: () => ({
-    activeTab: 'Book Appointments',
-    links: ['Book Appointments', 'Previous Diagnosis'],
+    activeTab: "Book Appointments",
+    links: ["Book Appointments", "Previous Diagnosis"],
   }),
 
   methods: {
+    ...mapActions(["GetDoctor"]),
+
     switchTabs(payload) {
       this.activeTab = payload;
     },
+  },
+
+  computed: {
+    ...mapGetters({ Doctor: "StateDoctor" }),
   },
 };
 </script>
