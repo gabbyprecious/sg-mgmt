@@ -54,8 +54,8 @@ export default {
   name: 'DoctorViewContainer',
   created() {
     console.log('created');
-    // this.GetDoctor();
-    // console.log(this.Doctor);
+    this.GetDoctor();
+    console.log(this.Doctor);
   },
 
   components: {
@@ -67,6 +67,8 @@ export default {
     activeTab: 'Create Patient',
     links: ['Create Patient', 'Appointments', 'Upload Diagnosis'],
   }),
+
+
 
   methods: {
     ...mapActions(['GetDoctor']),

@@ -3,9 +3,9 @@
     <v-col>
       <v-card class="pa-2 mb-3" outlined tile>
         Booked Appointments
-        <div class="posts" v-if="Posts">
+        <div class="posts" v-if="Doctor.bookedAppts">
           <ul>
-            <li v-for="post in Posts" :key="post.id">
+            <li v-for="appts in Doctor.bookedAppts" :key="appts.id">
               <div id="post-div">
                 <p>{{ post.title }}</p>
               </div>
@@ -16,11 +16,11 @@
       </v-card>
       <v-card class="pa-2" outlined tile>
         Free Appointments Slots
-        <div class="posts" v-if="Posts">
+        <div class="posts" v-if="Doctor.freeAppt">
           <ul>
-            <li v-for="post in Posts" :key="post.id">
+            <li v-for="appts in Doctor.freeAppts" :key="appts.id">
               <div id="post-div">
-                <p>{{ new Date(post.title).toLocaleTimeString() }}</p>
+                <p>{{ new Date(appts.dateTime).toLocaleTimeString() }}</p>
               </div>
             </li>
           </ul>

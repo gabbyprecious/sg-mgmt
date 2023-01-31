@@ -65,6 +65,17 @@ const actions = {
     console.log('response', response.data);
     commit('setDoctor', response.data);
   },
+
+  async SetAppointment({ commit }, appointment) {
+    let response = await axios.post('Doctor/CreateAppointment', appointment, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+    console.log("response", response.data);
+    await commit('setUser', appointment.get('email'));
+  },
 };
 const mutations = {
   setUser(state, email) {
