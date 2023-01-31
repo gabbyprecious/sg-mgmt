@@ -1,65 +1,59 @@
 <template>
-  <v-container>
-    <v-responsive max-width="800">
-      <v-row>
-        <v-col>
-          <v-card class="pa-2" outlined tile>
-            Create Patient
-            <form @submit.prevent="submitApi">
-              <v-text-field
-                v-model="firstName.value.value"
-                :counter="10"
-                :error-messages="firstName.errorMessage.value"
-                label="First Name"
-              ></v-text-field>
+  <v-responsive max-width="800">
+    <v-card class="pa-2" outlined tile>
+      <form @submit.prevent="submitApi">
+        <v-text-field
+          v-model="firstName.value.value"
+          :counter="10"
+          :error-messages="firstName.errorMessage.value"
+          label="First Name"
+        ></v-text-field>
 
-              <v-text-field
-                v-model="lastName.value.value"
-                :counter="10"
-                :error-messages="lastName.errorMessage.value"
-                label="Last Name"
-              ></v-text-field>
+        <v-text-field
+          v-model="lastName.value.value"
+          :counter="10"
+          :error-messages="lastName.errorMessage.value"
+          label="Last Name"
+        ></v-text-field>
 
-              <v-text-field
-                v-model="bloodGroup.value.value"
-                :counter="10"
-                :error-messages="bloodGroup.errorMessage.value"
-                label="BloodGroup"
-              ></v-text-field>
+        <v-text-field
+          v-model="bloodGroup.value.value"
+          :counter="10"
+          :error-messages="bloodGroup.errorMessage.value"
+          label="Blood Group"
+        ></v-text-field>
 
-              <v-text-field
-                v-model="email.value.value"
-                :error-messages="email.errorMessage.value"
-                label="Patient E-mail"
-              ></v-text-field>
+        <v-text-field
+          v-model="email.value.value"
+          :error-messages="email.errorMessage.value"
+          label="Patient E-mail"
+        ></v-text-field>
 
-              <Datepicker v-model="date.value.value"></Datepicker>
+        <Datepicker class="my-3" v-model="date.value.value"></Datepicker>
 
-              <v-text-field
-                label="Password"
-                v-model="password.value.value"
-                type="password"
-                required
-              ></v-text-field>
+        <v-text-field
+          label="Password"
+          v-model="password.value.value"
+          type="password"
+          required
+        ></v-text-field>
 
-              <v-btn class="me-4" type="submit"> submit </v-btn>
+        <v-btn class="me-4" type="submit"> submit </v-btn>
 
-              <v-btn @click="handleReset"> clear </v-btn>
-            </form>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-responsive>
-  </v-container>
+        <v-btn @click="handleReset"> clear </v-btn>
+      </form>
+    </v-card>
+  </v-responsive>
 </template>
+
 <script>
-import { useField, useForm } from "vee-validate";
-import Datepicker from "@vuepic/vue-datepicker";
-import "@vuepic/vue-datepicker/dist/main.css";
-import { mapActions } from "vuex";
+import { useField, useForm } from 'vee-validate';
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
+import { mapActions } from 'vuex';
 
 export default {
-  name: "CreatePatient",
+  name: 'CreatePatient',
   components: { Datepicker },
   setup() {
     const { handleSubmit, handleReset } = useForm({
@@ -67,12 +61,12 @@ export default {
         firstName(value) {
           if (value?.length >= 2) return true;
 
-          return "First Name needs to be at least 2 characters.";
+          return 'First Name needs to be at least 2 characters.';
         },
         lastName(value) {
           if (value?.length >= 2) return true;
 
-          return "Last Name needs to be at least 2 characters.";
+          return 'Last Name needs to be at least 2 characters.';
         },
 
         // email(value) {
@@ -84,33 +78,42 @@ export default {
         bloodGroup(value) {
           if (value?.length <= 3) return true;
 
-          return "Blood Group is a max of 3 letters.";
+          return 'Blood Group is a max of 3 letters.';
         },
         password(value) {
           if (value?.length >= 8) return true;
 
-          return "Password needs to be at least 8 characters.";
+          return 'Password needs to be at least 8 characters.';
         },
       },
     });
-    const firstName = useField("firstName");
-    const lastName = useField("lastName");
-    const email = useField("email");
-    const date = useField("date");
-    const password = useField("password");
-    const bloodGroup = useField("bloodGroup");
+    const firstName = useField('firstName');
+    const lastName = useField('lastName');
+    const email = useField('email');
+    const date = useField('date');
+    const password = useField('password');
+    const bloodGroup = useField('bloodGroup');
 
     const submit = handleSubmit(() => {
-      console.log("submit");
+      console.log('submit');
       this.submitApi();
     });
 
-    return { email, firstName, lastName, date, bloodGroup, password, submit, handleReset };
+    return {
+      email,
+      firstName,
+      lastName,
+      date,
+      bloodGroup,
+      password,
+      submit,
+      handleReset,
+    };
   },
   methods: {
-    ...mapActions(["CreatePatient"]),
+    ...mapActions(['CreatePatient']),
     async submitApi() {
-      console.log("submit");
+      console.log('submit');
 
       const Patient = {
         FirstName: this.firstName.value.value,
@@ -122,13 +125,13 @@ export default {
       };
 
       try {
-        console.log("try");
+        console.log('try');
         await this.CreatePatient(JSON.stringify(Patient));
-        this.$router.push("/doctor");
+        this.$router.push('/doctor');
         // this.showError = false
-        console.log("success");
+        console.log('success');
       } catch (error) {
-        console.log("error" + error);
+        console.log('error' + error);
         this.showError = true;
       }
     },
