@@ -16,10 +16,11 @@
               <v-avatar color="primary" size="71">ON</v-avatar>
 
               <div class="biodata">
-                <p>Name:</p>
-                <p>Birth Date:</p>
-                <p>Blood Group:</p>
-                <p>Email:</p>
+                <p>First Name: {{ Patient?.firstName }}</p>
+                <p>Last Name: {{ Patient?.lastName }}</p>
+                <p>Birth Date: {{ Patient?.dob }}</p>
+                <p>Email: {{ Patient?.email }}</p>
+                <p>Blood Group: {{ Patient?.bloodGroup }}</p>
               </div>
             </v-sheet>
           </v-col>
@@ -47,10 +48,10 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'PatientHome',
-  setup() {
+  created() {
     console.log('created');
-    // this.GetDoctor();
-    // console.log(this.Doctor);
+    this.GetPatient();
+  //console.log(this.Doctor);
   },
   components: {
     BookAppointment,
@@ -62,7 +63,7 @@ export default {
   }),
 
   methods: {
-    ...mapActions(['GetDoctor']),
+    ...mapActions(['GetPatient']),
 
     switchTabs(payload) {
       this.activeTab = payload;
@@ -70,7 +71,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters({ Doctor: 'StateDoctor' }),
+    ...mapGetters({ Patient: 'StatePatient' }),
   },
 };
 </script>

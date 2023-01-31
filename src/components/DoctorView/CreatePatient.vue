@@ -1,7 +1,7 @@
 <template>
   <v-responsive max-width="800">
     <v-card class="pa-2" outlined tile>
-      <form @submit.prevent="submitApi">
+      <form ref="anyName" @submit.prevent="submitApi">
         <v-text-field
           v-model="firstName.value.value"
           :counter="10"
@@ -127,6 +127,7 @@ export default {
       try {
         console.log('try');
         await this.CreatePatient(JSON.stringify(Patient));
+        this.$refs.anyName.reset();
         this.$router.push('/doctor');
         // this.showError = false
         console.log('success');

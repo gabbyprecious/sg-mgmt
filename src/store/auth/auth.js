@@ -66,6 +66,12 @@ const actions = {
     commit('setDoctor', response.data);
   },
 
+  async GetPatient({ commit }) {
+    let response = await axios.get('/Patient');
+    console.log('response', response.data);
+    commit('setPatient', response.data);
+  },
+
   async SetAppointment({ commit }, appointment) {
     let response = await axios.post('Doctor/CreateAppointment', appointment, {
       headers: {
@@ -91,6 +97,10 @@ const mutations = {
 
   setDoctor(state, doctor) {
     state.doctor = doctor;
+  },
+
+  setPatient(state, patient) {
+    state.patient = patient;
   },
 };
 export default {
