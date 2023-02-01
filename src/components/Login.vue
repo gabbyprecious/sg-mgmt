@@ -1,20 +1,41 @@
 <template>
   <div class="login">
-    <div>
-      <form @submit.prevent="submit">
-        <!-- <form> -->
-        <div>
+    <v-responsive max-width="500">
+      <v-card class="pa-6">
+        <v-card-title class="pl-0">Login</v-card-title>
+
+        <v-form @submit.prevent="submit">
+          <!-- <div>
           <label for="Email">Email:</label>
           <input type="text" name="email" v-model="form.email" />
         </div>
         <div>
           <label for="password">Password:</label>
           <input type="password" name="password" v-model="form.password" />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-      <p v-if="showError" id="error">Email or Password is incorrect</p>
-    </div>
+        </div> -->
+          <v-text-field
+            v-model="form.email"
+            :counter="10"
+            label="Email"
+            required
+          ></v-text-field>
+
+          <v-text-field
+            v-model="form.password"
+            label="Password"
+            required
+          ></v-text-field>
+
+          <v-btn class="mr-4" large block color="primary" @click="submit"
+            >Submit</v-btn
+          >
+          <!-- <button type="submit">Submit</button> -->
+        </v-form>
+        <p class="pt-4" v-if="showError" id="error">
+          Email or Password is incorrect
+        </p>
+      </v-card>
+    </v-responsive>
   </div>
 </template>
 
@@ -64,6 +85,14 @@ export default {
 * {
   box-sizing: border-box;
 }
+
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 label {
   padding: 12px 12px 12px 0;
   display: inline-block;
