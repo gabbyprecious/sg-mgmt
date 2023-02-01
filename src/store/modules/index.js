@@ -1,6 +1,6 @@
 // import Vuex from 'vuex';
 // import Vue from 'vue';
-import createPersistedState from "vuex-persistedstate";
+// import createPersistedState from "vuex-persistedstate";
 import auth from '../auth/auth.js';
 import { createStore } from 'vuex'
 
@@ -19,6 +19,6 @@ export const store = createStore({
   modules: {
     auth
   },
-    plugins: [createPersistedState()]
+    // plugins: [createPersistedState()]
   })
   

@@ -6,7 +6,7 @@ const state = {
   user: null,
   diagnosis: null,
   doctor: null,
-  doctors: null,
+  doctors: [],
   patient: null,
 };
 
@@ -66,6 +66,14 @@ const actions = {
     commit('setDoctor', response.data);
   },
 
+  async GetDoctors({ commit }, specialty) {
+    console.log('specialty', specialty)
+    let response = await axios.get('/Patient/GetDoctorsBySpecialty?specialty=' + "cardio");
+    console.log('response', response.data);
+    commit('setDoctor', response.data);
+    return response.data;
+  },
+
   async GetPatient({ commit }) {
     let response = await axios.get('/Patient');
     console.log('response', response.data);
@@ -91,8 +99,12 @@ const mutations = {
     state.diagnosis = diagnosis;
   },
 
-  setDoctors(state, diagnosis) {
-    state.diagnosis = diagnosis;
+  setDoctors(state, doctors) {
+    // state.doctors = doctors;
+    for (var i = 0; i < doctors.length; i++) {
+      state.doctors.push(doctors[i]);
+    }
+    // Object.assign(state.doctors, doctors);
   },
 
   setDoctor(state, doctor) {

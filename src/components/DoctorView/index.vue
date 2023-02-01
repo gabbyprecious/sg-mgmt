@@ -16,8 +16,8 @@
               <v-avatar color="primary" size="71">ON</v-avatar>
 
               <div class="biodata">
-                <p>First Name: {{ Doctor?.firstName }}</p>
-                <p>Last Name: {{ Doctor?.lastName }}</p>
+                <p><b>First Name:</b> {{ Doctor?.firstName }}</p>
+                <p><b>Last Name:</b> {{ Doctor?.lastName }}</p>
                 <p>Birth Date: {{ Doctor?.dob }}</p>
                 <p>Email: {{ Doctor?.email }}</p>
                 <p>Specialty: {{ Doctor?.specialty }}</p>
