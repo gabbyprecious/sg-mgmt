@@ -34,7 +34,7 @@ axios.interceptors.response.use(undefined, function (error) {
 
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://localhost:60793/';
+axios.defaults.baseURL = 'https://601a-178-215-194-55.eu.ngrok.io/';
 
 const vuetify = createVuetify({
   components,
