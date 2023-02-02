@@ -28,7 +28,8 @@ const actions = {
       },
     });
     localStorage.setItem('token', response.data.token);
-    await commit('setUser', User.get('email'));
+    localStorage.setItem('role', response.data.role);
+    await commit('setUser', response.data.role);
   },
 
   async CreatePatient({ commit }, newPatient) {

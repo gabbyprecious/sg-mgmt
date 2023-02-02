@@ -20,9 +20,9 @@
           </v-card>
         </v-col>
         <v-col>
-          <v-card class="pa-2" outlined tile>
-            Found Doctors
-            <div class="doctors" v-if="doctorsDB">
+          <v-card class="pa-2" outlined tile v-if="doctorsDB">
+            <b>Found Doctors</b>
+            <div class="doctors" v-if="doctorsDB.length>0">
               <ul>
                 <li v-for="doctor in this.doctorsDB" :key="doctor.id">
                   <div id="doctor-div">
@@ -35,7 +35,7 @@
                 </li>
               </ul>
             </div>
-            <div v-else>Oh no!!! No Doctor was found yet</div>
+            <div v-else>Oh no!!! No Result for this Specialty, search again</div>
           </v-card>
         </v-col>
       </v-row>

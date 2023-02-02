@@ -18,9 +18,9 @@
               <div class="biodata">
                 <p><b>First Name:</b> {{ Doctor?.firstName }}</p>
                 <p><b>Last Name:</b> {{ Doctor?.lastName }}</p>
-                <p>Birth Date: {{ Doctor?.dob }}</p>
-                <p>Email: {{ Doctor?.email }}</p>
-                <p>Specialty: {{ Doctor?.specialty }}</p>
+                <p><b> Birth Date: </b> {{ Doctor?.dob }}</p>
+                <p><b>Email:</b> {{ Doctor?.email }}</p>
+                <p><b>Specialty</b>: {{ Doctor?.specialty }}</p>
               </div>
             </v-sheet>
           </v-col>
@@ -36,6 +36,10 @@
               <div v-if="activeTab == 'Upload Diagnosis'">
                 <UploadDiagnosis />
               </div>
+
+              <div v-if="activeTab == 'Patients'">
+                <ListPatients />
+              </div>
             </v-sheet>
           </v-col>
         </v-row>
@@ -48,6 +52,7 @@
 import CreatePatient from './CreatePatient.vue';
 import AppointmentView from './AppointmentView.vue';
 import UploadDiagnosis from './UploadDiagnosis.vue';
+import ListPatients from './PatientView.vue';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -62,10 +67,11 @@ export default {
     CreatePatient,
     AppointmentView,
     UploadDiagnosis,
+    ListPatients,
   },
   data: () => ({
     activeTab: 'Create Patient',
-    links: ['Create Patient', 'Appointments', 'Upload Diagnosis'],
+    links: ['Create Patient', 'Appointments', 'Upload Diagnosis', 'Patients'],
   }),
 
 

@@ -2,15 +2,15 @@
   <v-row>
     <v-col>
       <v-card class="pa-2" outlined tile>
-        Previous Diagnosis
+        <b>Previous Diagnosis</b>
         <div class="posts" v-if="diagnosisDB.length">
           <ul>
             <li v-for="diagnosis in this.diagnosisDB" :key="diagnosis.id">
               <div id="post-div">
                 <p>{{ diagnosis.result }}</p>
                 <p>
-                  by {{ diagnosis.doctor.firstName }}
-                  {{ diagnosis.doctor.lastName }}
+                  by {{ diagnosis.doctor.user.firstName }}
+                  {{ diagnosis.doctor.user.lastName }}
                 </p>
               </div>
             </li>
@@ -32,7 +32,11 @@ export default {
   created() {
     console.log("created");
     this.GetDiagnosis();
-    console.log(this.diagnosisDB);
+    console.log(this.diagnosisDB[0]);
+  },
+  mounted() {
+    console.log("mounted");
+    console.log(this.diagnosisDB[0]);
   },
   data() {
     return {
@@ -51,7 +55,8 @@ export default {
           this.diagnosisDB = [];
         }else{
           this.diagnosisDB = response.data;
-        console.log("diagnosisDB", this.diagnosisDB);
+          console.log("diagnosisDB", this.diagnosisDB);
+          console.log(this.diagnosisDB[0]);
         // this.$router.push("/doctors");
         }
 

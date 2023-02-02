@@ -125,7 +125,7 @@ export default {
       };
 
       try {
-        console.log('try');
+        console.log('patient', Patient);
         await this.CreatePatient(JSON.stringify(Patient));
         this.$refs.anyName.reset();
         this.$router.push('/doctor');

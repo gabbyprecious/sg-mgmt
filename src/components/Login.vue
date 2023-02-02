@@ -24,6 +24,7 @@
             v-model="form.password"
             label="Password"
             required
+            type="password"
           ></v-text-field>
 
           <v-btn class="mr-4" large block color="primary" @click="submit"
@@ -58,9 +59,6 @@ export default {
     ...mapActions(['LogIn']),
     async submit() {
       console.log('submit');
-      // const User = new FormData();
-      // User.append("username", this.form.email);
-      // User.append("password", this.form.password);
 
       const User = {
         email: this.form.email,
@@ -70,10 +68,14 @@ export default {
       try {
         console.log('try');
         await this.LogIn(JSON.stringify(User));
-        // this.$router.push("/posts");
-        // this.showError = false
         console.log('success');
+        if (localStorage.getItem('role') === 'doctor') {
+          this.$router.push('/doctor');
+        } else if (localStorage.getItem('role') === 'patient') {
+          this.$router.push('/patient-home');
+        }
       } catch (error) {
+        console.log('error' + error);
         this.showError = true;
       }
     },
