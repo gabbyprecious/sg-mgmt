@@ -32,7 +32,7 @@
       <v-card class="pa-2" outlined tile> Set Appointment Slots 
 
         Set Appointment Slots
-                  <form @submit.prevent="submitApi">
+                  <form ref="anyName" @submit.prevent="submitApi">
                     <Datepicker v-model="date.value.value"></Datepicker>
 
                     <v-btn class="me-4" type="submit"> submit </v-btn>
@@ -115,6 +115,7 @@ export default {
       try {
         console.log("try");
         await this.SetAppointment(JSON.stringify(Appointment));
+        this.$refs.anyName.reset();
         this.$router.push("/doctor");
         console.log("success");
       } catch (error) {

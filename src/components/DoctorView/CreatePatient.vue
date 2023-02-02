@@ -126,9 +126,9 @@ export default {
 
       try {
         console.log('patient', Patient);
-        await this.CreatePatient(JSON.stringify(Patient));
+        await this.CreatePatient(JSON.stringify(Patient), this.email.value.value);
         this.$refs.anyName.reset();
-        this.$router.push('/doctor');
+        // this.$router.push('/doctor');
         // this.showError = false
         console.log('success');
       } catch (error) {

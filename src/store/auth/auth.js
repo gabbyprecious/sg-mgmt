@@ -32,7 +32,7 @@ const actions = {
     await commit('setUser', response.data.role);
   },
 
-  async CreatePatient({ commit }, newPatient) {
+  async CreatePatient({ commit }, newPatient, email) {
     console.log('Patient', newPatient);
     let response = await axios.post('Doctor/CreatePatient', newPatient, {
       headers: {
@@ -41,7 +41,7 @@ const actions = {
       },
     });
     console.log('response', response.data);
-    await commit('setUser', newPatient.get('email'));
+    await commit('setUser', email);
   },
 
   async UploadDiagnosis({ commit }, newDiagnosis) {

@@ -5,7 +5,7 @@
         <v-col>
           <v-card class="px-2 py-5" outlined tile>
             <p class="mb-5">Search for Doctor</p>
-            <form @submit.prevent="GetDoctors">
+            <form  ref="anyName" @submit.prevent="GetDoctors">
               <v-text-field
                 v-model="specialty.value.value"
                 :counter="10"
@@ -66,7 +66,7 @@
                 </li>
               </ol>
 
-              <form @submit.prevent="setAppointment">
+              <form ref="someName" @submit.prevent="setAppointment">
                 <v-text-field
                   v-model="apptdate.value.value"
                   :counter="10"
@@ -148,7 +148,8 @@ export default {
         );
         this.doctorsDB = response.data;
         console.log("doctor", this.doctorsDB);
-        // this.$router.push("/doctors");
+        this.$refs.anyName.reset();
+        this.$router.push("/patient-home");
       } catch (error) {
         console.log("error" + error);
         this.showError = true;
@@ -181,6 +182,7 @@ export default {
           "Patient/SetApptDate?appt_id=" + appt_id
         );
         this.doctor = response.data;
+        this.$refs.someName.reset();
         console.log("doctor", this.doctor);
       } catch (error) {
         console.log("error" + error);
